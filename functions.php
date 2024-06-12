@@ -18,3 +18,12 @@ function enqueue_tailwind() {
     wp_enqueue_style('tailwindcss', get_template_directory_uri() . '/src/output.css', array(), '1.0', 'all');
 }
 add_action('wp_enqueue_scripts', 'enqueue_tailwind');
+
+
+
+// remove break line from contact form 7
+function remove_cf7_br_tags($content) {
+    $content = preg_replace('/<br\s*\/?>/', '', $content);
+    return $content;
+}
+add_filter('wpcf7_form_elements', 'remove_cf7_br_tags');
